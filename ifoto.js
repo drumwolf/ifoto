@@ -1,6 +1,6 @@
 const fs  = require('fs');
 const ExifImage = require('exif').ExifImage;
-const dir = './';
+const dir = '/Users/drumwolf/Desktop/files/';
 
 fs.readdir(dir, (err, files) => {
 	const jpegs = files.filter( file => file.slice(-4).toUpperCase() === '.JPG' );
@@ -9,7 +9,7 @@ fs.readdir(dir, (err, files) => {
 
 function processJPG(file) {
 	try {
-		new ExifImage({ image : file }, function (error, exifData) {
+		new ExifImage({ image : dir + file }, function (error, exifData) {
 			if (error)
 				console.log('Error: '+error.message);
 			else {
