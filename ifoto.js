@@ -31,6 +31,12 @@ function setFilename(file, exifData) {
 	const hasExifData = (jpgModel && jpgModifyDate === jpgCreateDate && jpgModifyDate === jpgDateTimeOriginal);
 	// rename file if exif data is valid
 	if (hasExifData) {
-		console.log(`${file} =======> ${jpgModel} / ${jpgNumber} / ${jpgCreateDate}`)
+		const filenameModel = setFilenameModel(jpgModel);
+		console.log(`${file} =======> ${filenameModel}${jpgNumber} / ${jpgCreateDate}.JPG`)
 	}
+}
+function setFilenameModel(model) {
+	if (model.match(/ipad/i)) { return "IPAD" }
+	if (model.match(/iphone/i)) { return "IPHONE" }
+	return null;
 }
