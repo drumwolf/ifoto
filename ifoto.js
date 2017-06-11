@@ -1,6 +1,6 @@
 const fs  = require('fs');
 const ExifImage = require('exif').ExifImage;
-const dir = '/Users/drumwolf/Desktop/files/';
+const dir = './';
 
 fs.readdir(dir, (err, files) => {
 	const jpegs = files.filter( file => file.slice(-4).toUpperCase() === '.JPG' );
@@ -32,8 +32,16 @@ function setFilename(file, exifData) {
 	// rename file if exif data is valid
 	if (hasExifData) {
 		const filenameModel = setFilenameModel(jpgModel);
-		console.log(`${file} =======> ${filenameModel}${jpgNumber} / ${jpgCreateDate}.JPG`)
+		const filenameDate = setFilenameDate(jpgCreateDate);
+		const newFilename = `${filenameModel}${jpgNumber}__${filenameDate}.JPG`;
+		console.log(`${file} =======> ${newFilename}`)
 	}
+}
+function setFilenameDate(datetime) {
+	let [ date, time ] = datetime.split(' ');
+	date = date.replace(/\:/g,"-");
+	time = time.replace(/\:/g,".");
+	return `${date} (${time})`;
 }
 function setFilenameModel(model) {
 	if (model.match(/ipad/i)) { return "IPAD" }
