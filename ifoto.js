@@ -21,7 +21,16 @@ function processJPG(file) {
 	}
 }
 function renameJPG(file, exifData) {
+	const jpgModel = exifData.image.Model;
+	const jpgNumber = file.match(/\d{4}/)[0];
+	const jpgModifyDate = exifData.image.ModifyDate;
+	const jpgCreateDate = exifData.exif.CreateDate;
+	const jpgDateTimeOriginal = exifData.exif.DateTimeOriginal;
 	console.log(`=============================================`);
-	console.log(`----------------${file}----------------`);
-	console.log(exifData)
+	console.log(file);
+	console.log(`Model:   ${jpgModel}`);
+	console.log(`Nummer:  ${jpgNumber}`);
+	console.log(`ModifyDate:       ${jpgModifyDate}`);
+	console.log(`CreateDate:       ${jpgCreateDate}`);
+	console.log(`DateTimeOriginal: ${jpgDateTimeOriginal}`);
 }
