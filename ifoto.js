@@ -20,6 +20,9 @@ function processJPG(file) {
 		console.log('Error: ' + error.message);
 	}
 }
+function renameFile(file, newFilename) {
+	console.log(`${file} =======> ${newFilename}`)
+}
 function setFilename(file, exifData) {
 	// relevant exif data
 	const jpgModel = exifData.image.Model;
@@ -34,7 +37,7 @@ function setFilename(file, exifData) {
 		const filenameModel = setFilenameModel(jpgModel);
 		const filenameDate = setFilenameDate(jpgCreateDate);
 		const newFilename = `${filenameModel}${jpgNumber}__${filenameDate}.JPG`;
-		console.log(`${file} =======> ${newFilename}`)
+		renameFile(file, newFilename)
 	}
 }
 function setFilenameDate(datetime) {
