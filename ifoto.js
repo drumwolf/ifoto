@@ -13,14 +13,14 @@ function processJPG(file) {
 			if (error)
 				console.log('Error: '+error.message);
 			else {
-				renameJPG(file, exifData);
+				setFilename(file, exifData);
 			}
 		});
 	} catch (error) {
 		console.log('Error: ' + error.message);
 	}
 }
-function renameJPG(file, exifData) {
+function setFilename(file, exifData) {
 	// relevant exif data
 	const jpgModel = exifData.image.Model;
 	const jpgNumber = file.match(/\d{4}/)[0];
