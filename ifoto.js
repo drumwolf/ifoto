@@ -1,6 +1,6 @@
 const fs  = require('fs');
 const ExifImage = require('exif').ExifImage;
-const dir = './';
+const dir = './files/';
 
 fs.readdir(dir, (err, files) => {
 	const jpegs = files.filter( file => file.slice(-4).toUpperCase() === '.JPG' );
@@ -21,7 +21,11 @@ function processJPG(file) {
 	}
 }
 function renameFile(file, newFilename) {
-	console.log(`${file} =======> ${newFilename}`)
+	const callback = function(err){
+        if (err) throw err;
+        console.log(file + " ----> " + newFilename);
+    }
+	fs.rename(dir + file, dir + newFilename, callback);
 }
 function setFilename(file, exifData) {
 	// relevant exif data
