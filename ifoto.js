@@ -65,6 +65,8 @@ function setFilename(file, exifData) {
 		const filenameDate = setFilenameDate(jpgCreateDate);
 		const newFilename = `${filenameModel}${jpgNumber}__${filenameDate}.JPG`;
 		renameFile(file, newFilename)
+	} else {
+		processNonEXIF(file);
 	}
 }
 function setFilenameDate(datetime) {
