@@ -19,6 +19,7 @@ fs.readdir(dir, (err, files) => {
 
 function processNonEXIF(file) {
 	fs.stat(dir + file, (err,stat) => {
+		const fileStr  = file.match(/[A-Z]+/);
 		const fileNum  = file.match(/\d{4}/);
 		const fileExt  = file.slice(-4).toUpperCase();
 		const fileTime = stat.mtime;
@@ -26,7 +27,7 @@ function processNonEXIF(file) {
 		const mmonth = ('0' + (fileTime.getMonth() + 1)).slice(-2);
 		const mdate  = ('0' + fileTime.getDate()).slice(-2);
 		const mtime  = fileTime.toString().split(" ")[4].replace(/:/g, '.');
-		const newFilename = `XXXXX${fileNum}__${myear}-${mmonth}-${mdate} (${mtime})${fileExt}`;
+		const newFilename = `${fileStr}${fileNum}__${myear}-${mmonth}-${mdate} (${mtime})${fileExt}`;
 		renameFile(file, newFilename);
 	});
 }
