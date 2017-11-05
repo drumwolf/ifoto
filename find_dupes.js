@@ -1,5 +1,5 @@
 const fs  = require('fs');
-const dir = './' + process.argv[2] + '/';
+const dir = '../../Desktop/_fotos/' + process.argv[2] + '/';
 
 fs.readdir(dir, (err, files) => {
 	const dupes = [];
