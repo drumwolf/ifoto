@@ -6,14 +6,17 @@ fs.readdir(dir, (err, files) => {
 	const jpegs = [];
 	const pngs  = [];
 	const movs  = [];
+	const mp4s  = [];
 	files.forEach( file => {
 		const ext = file.slice(-4).toUpperCase();
 		if (ext === '.JPG') { jpegs.push(file) }
 		if (ext === '.PNG') { pngs.push(file) }
 		if (ext === '.MOV') { movs.push(file) }
+		if (ext === '.MP4') { mp4s.push(file) }
 	});
-	pngs.forEach(processNonEXIF)
-	movs.forEach(processNonEXIF)
+	pngs.forEach(processNonEXIF);
+	movs.forEach(processNonEXIF);
+	mp4s.forEach(processNonEXIF);
 	jpegs.forEach(processJPG);
 });
 
